@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      minLength: 8,
+      minLength: 6,
     },
 
     mobile: {
@@ -28,28 +28,29 @@ const userSchema = new mongoose.Schema(
 
     aboutMe: {
       type: String,
-      default: "",
+    },
+
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
     },
 
     profileImg: {
       public_id: {
         type: String,
-        required: true,
       },
       url: {
         type: String,
-        required: true,
       },
     },
 
     resume: {
       public_id: {
         type: String,
-        required: true,
       },
       url: {
         type: String,
-        required: true,
       },
     },
 
@@ -65,4 +66,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+
+export default User;

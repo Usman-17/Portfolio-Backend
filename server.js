@@ -10,6 +10,7 @@ import { v2 as cloudinary } from "cloudinary";
 import { errorMiddleware } from "./middlewares/errors.js";
 
 import enquiryRoutes from "./routes/enquiry.route.js";
+import authRoutes from "./routes/auth.route.js";
 // Imports End
 
 const app = express();
@@ -43,6 +44,7 @@ app.use(
 
 // Routes Setup
 app.use("/api/v1/enquiry", enquiryRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.use(errorMiddleware);
 
