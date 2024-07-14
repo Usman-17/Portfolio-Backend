@@ -7,10 +7,10 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
-import { errorMiddleware } from "./middlewares/errors.js";
 
-import enquiryRoutes from "./routes/enquiry.route.js";
 import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
+import enquiryRoutes from "./routes/enquiry.route.js";
 // Imports End
 
 const app = express();
@@ -23,9 +23,9 @@ cloudinary.config({
 });
 
 // Middleware
-app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //to parse from data(urlencoded)
+app.use(cookieParser());
 
 app.use(
   fileUpload({
@@ -43,10 +43,9 @@ app.use(
 );
 
 // Routes Setup
-app.use("/api/v1/enquiry", enquiryRoutes);
 app.use("/api/v1/auth", authRoutes);
-
-app.use(errorMiddleware);
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/enquiry", enquiryRoutes);
 
 // Running App
 const PORT = process.env.PORT || 9000;
