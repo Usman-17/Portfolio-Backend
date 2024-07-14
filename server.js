@@ -11,6 +11,7 @@ import { v2 as cloudinary } from "cloudinary";
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
 import enquiryRoutes from "./routes/enquiry.route.js";
+import timelineRoutes from "./routes/timeline.route.js";
 // Imports End
 
 const app = express();
@@ -46,6 +47,7 @@ app.use(
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/enquiry", enquiryRoutes);
+app.use("/api/v1/timeline", timelineRoutes);
 
 // Running App
 const PORT = process.env.PORT || 9000;
