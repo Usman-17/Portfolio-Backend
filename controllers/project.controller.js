@@ -7,7 +7,6 @@ import { v2 as cloudinary } from "cloudinary";
 // DESC     : Create Project
 export const createProject = async (req, res) => {
   try {
-    const { projectImg } = req.files;
     const {
       title,
       description,
@@ -17,12 +16,12 @@ export const createProject = async (req, res) => {
       stack,
       deployed,
     } = req.body;
+    const { projectImg } = req.files;
 
     // Check for required fields
     if (
       !title ||
       !description ||
-      !projectImg ||
       !gitRepoLink ||
       !projectLink ||
       !technologies ||
@@ -86,8 +85,10 @@ export const updateProject = async (req, res) => {
 
     if (title) project.title = title;
     if (description) project.description = description;
-    if (gitRepoLink) project.gitRepoLink = gitRepoLink;
-    if (projectLink) project.projectLink = projectLink;
+    if (gitRepoLink !== undefined)
+      project.gitRepoLink = gitRepoLink === "" ? null : gitRepoLink;
+    if (projectLink !== undefined)
+      project.projectLink = projectLink === "" ? null : projectLink;
     if (technologies) project.technologies = technologies;
     if (stack) project.stack = stack;
     if (deployed) project.deployed = deployed;

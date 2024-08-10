@@ -5,13 +5,14 @@ import {
   createEnquiry,
   deleteEnquiry,
   getAllEnquires,
+  getEnquiry,
 } from "../controllers/enquiry.controller.js";
+import { isAdmin, protectRoute } from "../middlewares/authMiddleware.js";
 // Imports End
 
 router.get("/all", getAllEnquires);
-// router.get("/user/:username", protectRoute, getUserPosts);
+router.get("/:id", protectRoute, isAdmin, getEnquiry);
 router.post("/create", createEnquiry);
-// router.update("update/:id", protectRoute, deletePost);
-router.delete("/:id", deleteEnquiry);
+router.delete("/:id", protectRoute, isAdmin, deleteEnquiry);
 
 export default router;

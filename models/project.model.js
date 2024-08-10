@@ -3,13 +3,13 @@ import mongoose from "mongoose";
 const projectSchema = new mongoose.Schema(
   {
     title: {
-      type: "String",
+      type: String,
       required: true,
       trim: true,
     },
 
     description: {
-      type: "String",
+      type: String,
       required: true,
     },
 
@@ -24,11 +24,11 @@ const projectSchema = new mongoose.Schema(
       },
     },
 
-    gitRepoLink: "String",
-    projectLink: "String",
-    technologies: "String",
-    stack: "String",
-    deployed: "String",
+    gitRepoLink: String,
+    projectLink: String,
+    technologies: String,
+    stack: String,
+    deployed: String,
   },
 
   { timestamps: true }

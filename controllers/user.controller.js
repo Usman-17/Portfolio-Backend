@@ -27,7 +27,7 @@ export const getUser = async (req, res) => {
 // ACCESS   : PRIVATE
 // DESC     : Get User
 export const getUserForPortfolio = async (req, res) => {
-  const id = "669390dcdd2dd5caa0cc6fa3";
+  const id = "6693ca76f797dc52d081e7d7";
   try {
     const user = await User.findById(id);
     res.status(200).json(user);
@@ -59,13 +59,17 @@ export const updateProfile = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    user.fullName = fullName || user.fullName;
-    user.mobile = mobile || user.mobile;
-    user.aboutMe = aboutMe || user.aboutMe;
-    user.githubURL = githubURL || user.githubURL;
-    user.instagramURL = instagramURL || user.instagramURL;
-    user.facebookURL = facebookURL || user.facebookURL;
-    user.linkedInURL = linkedInURL || user.linkedInURL;
+    if (fullName) user.fullName = fullName;
+    if (mobile) user.mobile = mobile;
+    if (aboutMe) user.aboutMe = aboutMe;
+    if (githubURL !== undefined)
+      user.githubURL = githubURL === "" ? null : githubURL;
+    if (instagramURL !== undefined)
+      user.instagramURL = instagramURL === "" ? null : instagramURL;
+    if (facebookURL !== undefined)
+      user.facebookURL = facebookURL === "" ? null : facebookURL;
+    if (linkedInURL !== undefined)
+      user.linkedInURL = linkedInURL === "" ? null : linkedInURL;
 
     // Handle profile image upload
     if (req.files && req.files.profileImg) {
@@ -192,7 +196,7 @@ export const forgotPassword = async (req, res) => {
     const token = await user.createPasswordResetToken();
     await user.save();
 
-    const resetURL = `Hi ${user.fullName},<br><br>Please follow this link to reset your password. This link is valid for 10 minutes from now: <br> <br> <a href="${process.env.DASHBOARD_URL}/reset-password/${token}">Reset Password</a>`;
+    const resetURL = `Hi ${user.fullName},<br><br>Please follow this link to reset your password. This link is valid for 10 minutes from now: <br> <br> <a href="${process.env.DASHBOARD_URL}reset-password/${token}">Reset Password</a>`;
 
     const emailData = {
       to: email,

@@ -134,7 +134,7 @@ export const logout = async (req, res) => {
 // DESC     : Check User authenticated
 export const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).select("-password");
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }

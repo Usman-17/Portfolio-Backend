@@ -39,9 +39,11 @@ app.use(
 
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
-    method: ["GET", "POST", "PUT", "DELETE"],
-    credential: true,
+    // origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    origin: ["http://localhost:4000"],
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 

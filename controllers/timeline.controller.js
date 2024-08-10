@@ -39,7 +39,9 @@ export const updateTimeline = async (req, res) => {
     if (title) timeline.title = title;
     if (description) timeline.description = description;
     if (from) timeline.timeline.from = from;
-    if (to) timeline.timeline.to = to;
+    if (to !== undefined) {
+      timeline.timeline.to = to === "" ? null : to;
+    }
 
     timeline = await timeline.save();
 

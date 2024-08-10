@@ -95,7 +95,7 @@ export const updateSkill = async (req, res) => {
 // DESC     : Get all Skills
 export const getAllSkills = async (req, res) => {
   try {
-    const skills = await Skill.find().sort({ createdAt: -1 });
+    const skills = await Skill.find();
 
     if (!skills || skills.length === 0) return res.status(200).json([]);
 
