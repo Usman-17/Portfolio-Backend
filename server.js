@@ -39,10 +39,11 @@ app.use(
 
 app.use(
   cors({
-    // origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
-    origin: ["http://localhost:3000/"],
-    origin: ["https://muhammadusman-portfolio.vercel.app/"],
-    origin: ["https://usman-dashboard.vercel.app/"],
+    origin: [
+      "http://localhost:3000",
+      "https://muhammadusman-portfolio.vercel.app",
+      "https://usman-dashboard.vercel.app",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
