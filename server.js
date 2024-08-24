@@ -41,6 +41,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "http://localhost:4000",
       "https://muhammadusman-portfolio.vercel.app",
       "https://usman-dashboard.vercel.app",
     ],
